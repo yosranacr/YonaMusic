@@ -1,0 +1,35 @@
+<div *ngIf="events.length > 0">
+  <a routerLink="/artist/search" class="button primary">Back</a>
+  <h2 align="center">My events</h2>
+  <br>
+  <table class="table alt">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Datetime</th>
+        <th scope="col">City</th>
+        <th scope="col">Delete?</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let event of events">
+      <tr>
+        <td>{{event.name}}</td>
+        <td>{{event.type}}</td>
+        <td>{{event.date}}</td>
+        <td>{{event.venue.city}}, {{ event.venue.country }}</td>
+        <td>
+          <button type="button" (click)="deleteEvent(event)" class="btn btn-primary">
+            delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="events.length === 0">
+  <h2>You have no events</h2>
+  <div align="center"><a routerLink="/artist/search" class="button primary">Back</a></div>
+  <br>
+  <br>
+</div>

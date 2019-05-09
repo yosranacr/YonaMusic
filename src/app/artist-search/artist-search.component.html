@@ -1,0 +1,29 @@
+<header id="header">
+  <div class="logo">
+    <span class="icon fa-music"></span>
+  </div>
+  <div class="content">
+    <div class="inner">
+      <h1>Yona music</h1><input id="searchBar" class="searchbar" type="text" placeholder="Search by artist..."
+        class="form-control" #searchBox (input)="searchArtist(searchBox.value)">
+      <ul class="alt">
+          <br>
+        <li *ngFor="let artist of artists$ | async">
+          <a routerLink="/artist/{{artist.id}}">
+            {{artist.name}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li><a routerLink="/artist/search">Search by artist</a></li>
+      <li><a routerLink="/venue/search">Search by venue</a></li>
+      <li *ngIf="!authService.isLoggedIn"><a routerLink="/login">Login</a></li>
+      <li *ngIf="authService.isLoggedIn"><a routerLink="/my-events">My events</a></li>
+      <li *ngIf="authService.isLoggedIn"><a (click)="authService.logout()">Logout</a></li>
+      <!--<li><a href="#elements">Elements</a></li>-->
+    </ul>
+  </nav>
+</header>

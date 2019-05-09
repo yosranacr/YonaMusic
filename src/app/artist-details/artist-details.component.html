@@ -1,0 +1,35 @@
+<div *ngIf="events.length > 0">
+  <a routerLink="/artist/search" class="button primary">Back</a>
+  <h2 align="center">Result for artist {{events[0].artist.name}}</h2>
+  <br>
+  <table class="table alt">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Datetime</th>
+        <th scope="col">City</th>
+        <th *ngIf="authService.isLoggedIn" scope="col">add to my events</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let event of events">
+      <tr>
+        <td>{{event.name}}</td>
+        <td>{{event.type}}</td>
+        <td>{{event.date}}</td>
+        <td>{{event.venue.city}}, {{ event.venue.country }}</td>
+        <td *ngIf="authService.isLoggedIn">
+          <button type="button" (click)="addEvent(event)" class="btn btn-primary">
+            add
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="events.length === 0">
+  <h2>No upcomming concert</h2>
+  <div align="center"><a routerLink="/artist/search" class="button primary">Back</a></div>
+  <br>
+  <br>
+</div>
